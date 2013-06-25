@@ -1,0 +1,16 @@
+﻿{
+  "name": "Arabic Mozilla",
+  "description": "التطبيق الرسمي لمجتمع موزيلا العربي. نكرّس أنفسنا لجعل الأنترنت مكانا أفضل للجميع. يرجى الإنتباه أن التطبيق مازال في مراحلة التجريبية الأولى, وتنقصه العديد من الخصائص وقد يحتوي على أخطاء. ستتم إضافة المزيد من الميزات في المستقبل.",
+  "launch_path": "/index.html",
+  "version": "0.1.5",
+  "icons": {
+    "60": "/style/icons/set2/icon60.png",
+	"128": "/style/icons/set2/icon128.png",
+	"256": "/style/icons/set2/icon256.png"
+  },
+  "developer": {
+    "name": "Ahmed Nefzaoui",
+    "url": "http://nefzaoui.com"
+  },
+  "default_locale": "ar"
+}
