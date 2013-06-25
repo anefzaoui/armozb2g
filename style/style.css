@@ -40,16 +40,8 @@ right:0;
 top:0;
 z-index:3;
 width:100%;
+min-height:100%;
 background-color:white;
-}
-.loadingLayer{
-display:block;
-position:absolute!important;
-right:0px;
-top:0px;
-z-index:2;
-width:100%;
-background-color:black;
 }
 .main{
 display:block;
