@@ -151,6 +151,7 @@ Reader.load(Reader.DefaultJson+Reader.PageAction+Reader.CurrentPage+Reader.Callb
 /* ========== Next ========== */
 next : function _next(){
 if(Reader.CurrentPage<Reader.TotalPages){
+Reader.remove("script"+Reader.CurrentPage);
 Reader.loading();
 Reader.CurrentPage+=1;
 Reader.load(Reader.DefaultJson+Reader.PageAction+Reader.CurrentPage+Reader.CallbackAction+Reader.MainCallback);
@@ -158,6 +159,7 @@ Reader.load(Reader.DefaultJson+Reader.PageAction+Reader.CurrentPage+Reader.Callb
 },
 prev : function _prev(){
 if(Reader.CurrentPage>1){
+Reader.remove("script"+Reader.CurrentPage);
 Reader.loading();
 Reader.CurrentPage-=1;
 Reader.load(Reader.DefaultJson+Reader.PageAction+Reader.CurrentPage+Reader.CallbackAction+Reader.MainCallback);
@@ -169,6 +171,7 @@ if(Reader.isLoading){
 return;
 }
 else{
+Reader.remove("script"+Reader.CurrentPage);
 Reader.loading();
 Reader.load(Reader.DefaultJson+Reader.PageAction+"1"+Reader.CallbackAction+Reader.MainCallback);
 }
@@ -179,9 +182,25 @@ init : function ReaderInit(){
 Reader.load(Reader.DefaultJson+Reader.PageAction+Reader.CurrentPage+Reader.CallbackAction+Reader.MainCallback);
 }
 
+
 }
 
+var Comment = {
+Commentsnumber : 0,
 
+load : function LoadComments(){
+
+},
+
+submit : function submit_comment(name,text,email){
+
+},
+
+init : function CommentsInit(){
+
+}
+
+}
 
 window.addEventListener('load', function readerOnLoad(evt) {
   window.removeEventListener('load', readerOnLoad);
