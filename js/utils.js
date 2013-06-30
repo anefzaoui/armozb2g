@@ -28,6 +28,23 @@ MainCallback : "Reader.show",
 
 cI : "",
 
+isPost:false,
+
+currentPostLink : "",
+
+mainPageHeight : null,
+
+postHeight : null,
+
+setHeight : function getheightwindow(){
+Reader.mainPageHeight = document.getElementById('main').scrollHeight;
+Reader.postHeight = document.getElementById('read').scrollHeight;
+
+if(Reader.mainPageHeight>Reader.postHeight){
+document.getElementById('read').style.height = Reader.mainPageHeight + 40 + "px";
+}
+},
+
 /* ========== Remove Object By Id ========== */
 remove : function remove(id){
 var elem;
@@ -45,6 +62,7 @@ Reader.isLoading=true;
 
 /* ========== Back to main ========== */
 back : function backtomain(){
+Reader.isPost = false;
 Reader.PostClickRate=0;
 document.getElementById('read').classList.remove("OpenPostAnim");
 document.getElementById('read').classList.add("ClosePostAnim");
@@ -100,7 +118,9 @@ Reader.isLoading=false;
 
 /* ========== Show Post ========== */
 ShowPost : function _ShowPost(obj){
+Reader.isPost=true;
 Reader.PostClickRate=1;
+Reader.currentPostLink=obj["post"].url;
 console.log("===== Trying to show a single post...");
 var t='<section id="read" class="post OpenPostAnim" role="region">'
 +'<header>'
@@ -111,12 +131,30 @@ var t='<section id="read" class="post OpenPostAnim" role="region">'
 +'<h2>'+obj["post"]["author"].name+'</h2>'
 +'</header>'
 +'<div id="readInside">'+obj["post"].content+'</div>'
++'<div id="space"></div>'
++'<div role="toolbar">'
++'	<ul>'
++'    <li><button onclick="Reader.goHome()" class="pack-icon-home">Home</button></li>'
++'	  <li><button onclick="share.init()" class="pack-icon-share">Share</button></li>'
++'  </ul>'
++'<ul></ul>'
++'</div>'
 +'</section>';
+
 document.getElementById("Roots").innerHTML+=t;
 if ((window.scrollX !== 0) || (window.scrollY !== 0)) {
 window.scrollTo(0, 0);
 }
+Reader.setHeight();
 console.log("===== Post successfully Loaded");
+},
+
+/* ========== GO Home ========== */
+
+goHome : function goToHome(){
+Reader.back();
+Reader.home();
+
 },
 
 /* ========== GO ========== */

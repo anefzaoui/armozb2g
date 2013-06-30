@@ -2,6 +2,9 @@
 <html dir="rtl">
 <head>
 <script src="js/utils.js"></script>
+<script src="js/info.js"></script>
+<script src="js/share_activity.js"></script>
+
 <title>مجتمع موزيلا العربي</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="style/style.css">
@@ -16,23 +19,41 @@
     [role="toolbar"] .pack-icon-next {
       background-image: url(images/next.png);
     }
+	[role="toolbar"] .icon-text {
+      font-size:1.4rem!important;
+	  color:white;
+    }
 	[role="toolbar"] .pack-icon-previous {
       background-image: url(images/prev.png);
     }
 	[role="toolbar"] .pack-icon-home {
       background-image: url(images/home.png);
     }
+	[role="toolbar"] .pack-icon-share {
+      background-image: url(images/share.png);
+    }
+	
+	[role="toolbar"] button[disabled]{
+	opacity: 0.5;
+	}
+	
+	[role="toolbar"] button[disabled]:active{
+	background: transparent no-repeat 50% 50% / 3rem auto;
+	}
 
 </style>
 </head>
 <body id="Roots" role="application">
-<section role="region" class="main">
+<section role="region" id="main" class="main">
 <header>
-<menu type="toolbar"><button onclick="Reader.refresh();">تحديث</button></menu>
-<h1>مجتمع موزيلا العربي</h1>
+<menu type="toolbar">
+<a href="#" onclick="Reader.refresh();"><span class="icon icon-refresh">Refresh</span></a>
+</menu>
+</menu>
+<h1><script>document.write(info.blogName);</script></h1>
 </header>
 <header>
-<h2>نكرس أنفسنا لجعل الإنترنت أفضل للجميع</h2>
+<h2><script>document.write(info.blogDescription);</script></h2>
 </header>
 <section data-type="list">
 <header>آخر المواضيع</header>
@@ -44,10 +65,12 @@
 <div role="toolbar">
 	<ul>
       <li><button onclick="Reader.home()" class="pack-icon-home">Home</button></li>
+	  <li><button onclick="share.init()" class="pack-icon-share">Share</button></li>
+	  
     </ul>
     <ul>
       <li><button onclick="Reader.prev()" class="pack-icon-previous">Previous</button></li>
-      <li><button onclick="Reader.next()"class="pack-icon-next">Next</button></li>
+      <li><button onclick="Reader.next()" class="pack-icon-next">Next</button></li>
     </ul>
 </div>
 </section>

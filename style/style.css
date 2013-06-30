@@ -3,6 +3,7 @@ html,body {
   margin: 0;
   padding: 0;
   font-size: 10px;
+  overflow: auto;
 }
 #readInside{
 font-size:1.4rem;
@@ -63,4 +64,7 @@ video{
 width:99%;
 height:99%;
 display:block;
+}
+section[role="region"] > header:first-child .icon.icon-refresh {
+  background-image: url(../images/refresh.png);
 }
