@@ -2,6 +2,10 @@
 
 var Reader = {
 
+PostID : null,
+
+Lid : null,
+
 RefreshRate : 0,
 
 PostClickRate : 0,
@@ -36,9 +40,14 @@ mainPageHeight : null,
 
 postHeight : null,
 
+windowHeight : null,
+
 setHeight : function getheightwindow(){
+document.getElementById('postToolbar').style.position = 'fixed';
 Reader.mainPageHeight = document.getElementById('main').scrollHeight;
 Reader.postHeight = document.getElementById('read').scrollHeight;
+Reader.windowHeight = window.innerHeight;
+document.getElementById('postToolbar').style.top = (Reader.windowHeight - 40)  + 'px';
 
 if(Reader.mainPageHeight>Reader.postHeight){
 document.getElementById('read').style.height = Reader.mainPageHeight + 40 + "px";
@@ -67,16 +76,22 @@ Reader.PostClickRate=0;
 document.getElementById('read').classList.remove("OpenPostAnim");
 document.getElementById('read').classList.add("ClosePostAnim");
 setTimeout(function() { Reader.remove('read'); }, 1000);
+Reader.remove('script'+Reader.PostID);
 },
 
 /* ========== Load ========== */
 load : function loadJSON(url){
+if(!Reader.isPost)
+Reader.Lid = Reader.CurrentPage;
+else{
+Reader.Lid = Reader.PostID;
+}
 console.log("===== Loading Main Json");
 var headID = document.getElementsByTagName("head")[0];
 var newScript = document.createElement('script');
 newScript.type = 'text/javascript';
 newScript.src = url;
-newScript.id = "script"+Reader.CurrentPage;
+newScript.id = "script"+Reader.Lid;
 headID.appendChild(newScript);
 console.log("===== Main Json Successfullly Loaded");
 },
@@ -118,7 +133,7 @@ Reader.isLoading=false;
 
 /* ========== Show Post ========== */
 ShowPost : function _ShowPost(obj){
-Reader.isPost=true;
+//Reader.isPost=true;
 Reader.PostClickRate=1;
 Reader.currentPostLink=obj["post"].url;
 console.log("===== Trying to show a single post...");
@@ -132,7 +147,7 @@ var t='<section id="read" class="post OpenPostAnim" role="region">'
 +'</header>'
 +'<div id="readInside">'+obj["post"].content+'</div>'
 +'<div id="space"></div>'
-+'<div role="toolbar">'
++'<div role="toolbar" id="postToolbar">'
 +'	<ul>'
 +'    <li><button onclick="Reader.goHome()" class="pack-icon-home">Home</button></li>'
 +'	  <li><button onclick="share.init()" class="pack-icon-share">Share</button></li>'
@@ -164,8 +179,11 @@ console.log("==[[[[[ A post is already to load itself");
 return;
 }
 else{
+Reader.isPost = true;
+Reader.PostID = pID;
 Reader.load('http://arabicmozilla.org/?json=get_post&callback=Reader.ShowPost&id='+pID);
 Reader.PostClickRate=1;
+
 }
 },
 
