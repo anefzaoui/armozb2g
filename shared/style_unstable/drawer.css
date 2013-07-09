@@ -233,7 +233,6 @@ html[dir="rtl"] section[role="region"]:target {
 }
 html[dir="rtl"] section[role="region"] > header:first-child {
   margin-right: -1.6rem;
-  margin-left:inherit;
 }
 
 html[dir="rtl"] section[data-type="sidebar"] > header h1 {
@@ -253,7 +252,7 @@ html[dir="rtl"] section[role="region"] > header:first-child > a {
   width: 7rem;
 }
 html[dir="rtl"] section[role="region"] > header:first-child h1 {
-  margin-left: 5rem;
+  margin-right: 5rem;
 }
 html[dir="rtl"] section[data-type="sidebar"] > nav {
   overflow-y: auto;
