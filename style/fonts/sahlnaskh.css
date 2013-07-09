@@ -1,0 +1,13 @@
+@font-face{
+	font-family:'sahlnaskh';
+	font-weight:normal;
+		src:url(sahlnaskh-regular.ttf);
+		
+}
+
+@font-face{
+	font-family:'sahlnaskh-bold';
+	font-weight:bold;
+		src:url(sahlnaskh-bold.ttf);
+		
+}
