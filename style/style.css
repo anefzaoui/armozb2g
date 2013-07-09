@@ -4,9 +4,20 @@ html,body {
   padding: 0;
   font-size: 10px;
   overflow: auto;
+  
+}
+form{
+margin:1rem auto;
+}
+section[data-type="list"]{
+font-family:'sahlnaskh';
 }
 #readInside{
-font-size:1.4rem;
+font-family:'sahlnaskh';
+font-weight:normal;
+font-size:1.5rem;
+color:#4e4f54;
+line-height:2rem;
 width:90%;
 margin-left:auto;
 margin-right:auto;
@@ -14,11 +25,16 @@ margin-top:1rem;
 margin-bottom:1rem;
 display:block;
 }
-img{
+#readInside img{
 width:99%; 
 height:99%;
 margin:auto;
 display:block;
+margin:1rem 0;
+}
+#readInside a{
+
+text-decoration: none;
 }
 @keyframes openApp {
 0% { transform: scale(0.1); opacity: 0; }
@@ -52,6 +68,21 @@ top:0px;
 z-index:1;
 width:100%;
 background-color:white;
+}
+.addComment{
+display:block;
+position:absolute!important;
+right:0;
+top:0;
+z-index:4;
+width:100%;
+min-height:100%;
+background-color:white;
+}
+.addCommentButtonSection{
+font-family:'sahlnaskh';
+width:90%;
+margin:1rem auto;
 }
 #loading{
 font-size:1.5rem;

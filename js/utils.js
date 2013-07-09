@@ -1,4 +1,7 @@
 ﻿'use strict';
+function _(elmnt){
+document.write(elmnt);
+}
 
 var Reader = {
 
@@ -145,15 +148,20 @@ var t='<section id="read" class="post OpenPostAnim" role="region">'
 +'<header>'
 +'<h2>'+obj["post"]["author"].name+'</h2>'
 +'</header>'
-+'<div id="readInside">'+obj["post"].content+'</div>'
++'<div id="readInside">'+obj["post"].content
++'</div>'
++'<div class="addCommentButtonSection">'
++'<a class="recommend" role="button" href="javascript:comments.openInterface();">'
++'أضف تعليق'
++'</a></div>'
 +'<div id="space"></div>'
-+'<div role="toolbar" id="postToolbar">'
+/*+'<div role="toolbar" id="postToolbar">'
 +'	<ul>'
 +'    <li><button onclick="Reader.goHome()" class="pack-icon-home">Home</button></li>'
 +'	  <li><button onclick="share.init()" class="pack-icon-share">Share</button></li>'
 +'  </ul>'
 +'<ul></ul>'
-+'</div>'
++'</div>' */
 +'</section>';
 
 document.getElementById("Roots").innerHTML+=t;
@@ -241,22 +249,7 @@ Reader.load(Reader.DefaultJson+Reader.PageAction+Reader.CurrentPage+Reader.Callb
 
 }
 
-var Comment = {
-Commentsnumber : 0,
 
-load : function LoadComments(){
-
-},
-
-submit : function submit_comment(name,text,email){
-
-},
-
-init : function CommentsInit(){
-
-}
-
-}
 
 window.addEventListener('load', function readerOnLoad(evt) {
   window.removeEventListener('load', readerOnLoad);

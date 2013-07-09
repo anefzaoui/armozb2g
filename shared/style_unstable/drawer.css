@@ -222,3 +222,58 @@ section[data-type="sidebar"] > nav > ul > li > a {
   white-space: nowrap;
   overflow: hidden;
 }
+
+html[dir="rtl"] section[role="region"] {
+  right:0;
+  padding-left: 2rem;
+}
+
+html[dir="rtl"] section[role="region"]:target {
+  transform: translateX(-80%);
+}
+html[dir="rtl"] section[role="region"] > header:first-child {
+  margin-right: -1.6rem;
+}
+
+html[dir="rtl"] section[data-type="sidebar"] > header h1 {
+  text-align: right;
+  margin: 0 3rem 0 0;
+}
+/* Generic set of actions in toolbar */
+html[dir="rtl"] section[data-type="sidebar"] > header menu[type="toolbar"] {
+  height: 100%;
+  float: left;
+}
+html[dir="rtl"] section[role="region"] > header:first-child > a .icon.icon-menu {
+  background-position: center center;
+  width: 4rem;
+}
+html[dir="rtl"] section[role="region"] > header:first-child > a {
+  width: 7rem;
+}
+html[dir="rtl"] section[role="region"] > header:first-child h1 {
+  margin-right: 5rem;
+}
+html[dir="rtl"] section[data-type="sidebar"] > nav {
+  overflow-y: auto;
+  max-height: 100%;
+  margin-left: -0.8rem;
+}
+/* Sidebar */
+html[dir="rtl"] section[data-type="sidebar"] {
+  right: 0;
+  left:inherit;
+}
+html[dir="rtl"] section[data-type="sidebar"] > header menu[type="toolbar"] a:last-child,
+html[dir="rtl"] section[data-type="sidebar"] > header menu[type="toolbar"] button:last-child {
+  background: url(drawer/images/ui/separator.png) no-repeat right center / auto 3.1rem;
+}
+html[dir="rtl"] section[data-type="sidebar"]:after {
+  background: url(drawer/images/ui/shadow.png) left top repeat-y;
+  
+  
+  
+  left: 0;
+  right:inherit;
+  
+}
