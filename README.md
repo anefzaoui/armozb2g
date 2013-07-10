@@ -8,7 +8,7 @@ Steps for using this code
 
 1- Install JSON API (plugin) on your wordpress site.
 
-2- Enable comments from Wordpress Admin Panel
+2- Enable JSON COMMENTS from Wordpress Admin Panel (JSON API : bottom tab) 
 
 3- Change blogURL to your own blog directory (info.js)
 
