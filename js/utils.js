@@ -5,6 +5,8 @@ document.write(elmnt);
 
 var Reader = {
 
+notification : null,
+
 PostID : null,
 
 Lid : null,
@@ -23,9 +25,9 @@ Posts : {},
 
 isLoading : false,
 
-MainJson : "http://arabicmozilla.org/?json=get_posts&page=1",
+MainJson : info.blogURL + "?json=get_posts&page=1",
 
-DefaultJson : "http://arabicmozilla.org/?json=get_posts",
+DefaultJson : info.blogURL + "?json=get_posts",
 
 PageAction : "&page=",
 
@@ -45,16 +47,19 @@ postHeight : null,
 
 windowHeight : null,
 
-setHeight : function getheightwindow(){
-document.getElementById('postToolbar').style.position = 'fixed';
+setHeight : function getheightwindow(elemid){
+//document.getElementById('postToolbar').style.position = 'fixed';
 Reader.mainPageHeight = document.getElementById('main').scrollHeight;
-Reader.postHeight = document.getElementById('read').scrollHeight;
+Reader.postHeight = document.getElementById(elemid).scrollHeight;
 Reader.windowHeight = window.innerHeight;
-document.getElementById('postToolbar').style.top = (Reader.windowHeight - 40)  + 'px';
+//document.getElementById('postToolbar').style.top = (Reader.windowHeight - 40)  + 'px';
 
 if(Reader.mainPageHeight>Reader.postHeight){
-document.getElementById('read').style.height = Reader.mainPageHeight + 40 + "px";
+//document.getElementById(elemid).style.height = Reader.mainPageHeight + 40 + "px";
+document.getElementById(elemid).style.height = document.getElementById("read").scrollHeight + 40 + "px";
 }
+
+
 },
 
 /* ========== Remove Object By Id ========== */
@@ -168,7 +173,7 @@ document.getElementById("Roots").innerHTML+=t;
 if ((window.scrollX !== 0) || (window.scrollY !== 0)) {
 window.scrollTo(0, 0);
 }
-Reader.setHeight();
+Reader.setHeight("read");
 console.log("===== Post successfully Loaded");
 },
 
@@ -183,7 +188,7 @@ Reader.home();
 /* ========== GO ========== */
 go : function goTo(pID){
 if(Reader.PostClickRate>0){
-console.log("==[[[[[ A post is already to load itself");
+console.log("==[[[[[ A post is already trying to load itself");
 return;
 }
 else{
@@ -191,7 +196,11 @@ Reader.isPost = true;
 Reader.PostID = pID;
 Reader.load('http://arabicmozilla.org/?json=get_post&callback=Reader.ShowPost&id='+pID);
 Reader.PostClickRate=1;
-
+  
+    
+      Reader.notification = navigator.mozNotification.createNotification("RTL2 Player", "Lecture en cours", "http://geekshadow.github.com/rtl2player/images/favicon.png");
+      Reader.notification.show();
+    
 }
 },
 
@@ -254,4 +263,5 @@ Reader.load(Reader.DefaultJson+Reader.PageAction+Reader.CurrentPage+Reader.Callb
 window.addEventListener('load', function readerOnLoad(evt) {
   window.removeEventListener('load', readerOnLoad);
   Reader.init();
+
 });

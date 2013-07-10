@@ -99,3 +99,12 @@ display:block;
 section[role="region"] > header:first-child .icon.icon-refresh {
   background-image: url(../images/refresh.png);
 }
+
+#comment_success,
+#comment_failed{
+display:none;
+visibility:hidden;
+font-size:1.5rem;
+}
+#comment_success{color:#376DB6;}
+#comment_failed{color:#B13127;}
