@@ -8,6 +8,8 @@ Steps for using this code
 
 1- Install JSON API (plugin) on your wordpress site.
 
-2- Change both MainJson and DefaultJson variables' "arabicmozilla.org" to your wordpress site directory.
+2- Enable comments from Wordpress Admin Panem
 
-3- Optional: if you are not using the app for any RTL language, you can remove dir="rtl" from the top of index.html
+3- Change blogURL to your own blog directory
+
+4- Optional: if you are not using the app for any RTL language, just dir="rtl" from the top of index.html
