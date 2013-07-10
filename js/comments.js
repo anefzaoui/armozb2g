@@ -61,11 +61,11 @@ submitComment : function submitC(name,email,content){
 
 },
 back : function _back(){
-Reader.remove('scriptComment'+Reader.PostID);
+
 document.getElementById('readComment').classList.remove("OpenPostAnim");
 document.getElementById('readComment').classList.add("ClosePostAnim");
 setTimeout(function() { Reader.remove('readComment'); }, 1000);
-
+Reader.remove('scriptComment'+Reader.PostID);
 },
 
 result : function _res(obj){
