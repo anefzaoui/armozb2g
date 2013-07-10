@@ -8,8 +8,8 @@ Steps for using this code
 
 1- Install JSON API (plugin) on your wordpress site.
 
-2- Enable comments from Wordpress Admin Panem
+2- Enable comments from Wordpress Admin Panel
 
-3- Change blogURL to your own blog directory
+3- Change blogURL to your own blog directory (info.js)
 
 4- Optional: if you are not using the app for any RTL language, just dir="rtl" from the top of index.html
