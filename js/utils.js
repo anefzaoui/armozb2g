@@ -197,10 +197,12 @@ Reader.PostID = pID;
 Reader.load('http://arabicmozilla.org/?json=get_post&callback=Reader.ShowPost&id='+pID);
 Reader.PostClickRate=1;
   
-    
-      Reader.notification = navigator.mozNotification.createNotification("RTL2 Player", "Lecture en cours", "http://geekshadow.github.com/rtl2player/images/favicon.png");
-      Reader.notification.show();
-    
+/*    
+	Testing notifications
+	Reader.notification = navigator.mozNotification.createNotification("Arabic Mozilla", "Post", "icon to be determined");
+	Reader.notification.show();
+*/
+
 }
 },
 
