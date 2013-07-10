@@ -6,6 +6,22 @@ html,body {
   overflow: auto;
   
 }
+section[role="region"] > header:first-child{
+position:fixed!important;
+width:100%;
+top:0;
+}
+section[role="region"] > header {
+position:fixed!important;
+width:100%;
+top:5rem;
+background-color:white;
+z-index:30!important;
+}
+section[data-type="list"]{
+margin-top:9rem;
+
+}
 form{
 margin:1rem auto;
 }
@@ -21,7 +37,7 @@ line-height:2rem;
 width:90%;
 margin-left:auto;
 margin-right:auto;
-margin-top:1rem;
+margin-top:9rem;
 margin-bottom:1rem;
 display:block;
 }
