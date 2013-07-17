@@ -18,7 +18,7 @@ console.log("===== Main Json Successfullly Loaded");
 },
 
 openInterface : function openint(){
-Reader.load("http://arabicmozilla.org/?json=get_post&callback=comments.addCommentLayer&id="+Reader.pID);
+Reader.load(info.blogURL+"?json=get_post&callback=comments.addCommentLayer&id="+Reader.pID);
 },
 addCommentLayer : function _addCommentLayer(obj){
 var comment_t='<section id="readComment" class="addComment OpenPostAnim" role="region">'

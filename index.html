@@ -21,7 +21,7 @@
 
 <!--<link rel="stylesheet" type="text/css" href="shared/style_unstable/drawer.css">-->
 <style>
-/* Base icons */
+
     [role="toolbar"] .pack-icon-next {
       background-image: url(images/next.png);
     }
@@ -38,15 +38,12 @@
 	[role="toolbar"] .pack-icon-share {
       background-image: url(images/share.png);
     }
-	
-	[role="toolbar"] button[disabled]{
-	opacity: 0.5;
-	}
-	
-	[role="toolbar"] button[disabled]:active{
-	background: transparent no-repeat 50% 50% / 3rem auto;
-	}
-
+	[role="toolbar"] .pack-icon-share-facebook {
+      background-image: url(images/1374080316_facebook.png);
+    }
+	[role="toolbar"] .pack-icon-share-twitter {
+      background-image: url(images/1374080369_twitter.png);
+    }
 </style>
 </head>
 <body id="Roots" role="application">
@@ -68,9 +65,10 @@
 </section>
 <div id="space"></div>
 <div role="toolbar">
-	<ul>
+	<ul id="share">
       <li><button onclick="Reader.home()" class="pack-icon-home">Home</button></li>
 	  <li><button onclick="share.init()" class="pack-icon-share">Share</button></li>
+	  
 	  
     </ul>
     <ul>

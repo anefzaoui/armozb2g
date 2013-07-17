@@ -2,8 +2,9 @@
 function _(elmnt){
 document.write(elmnt);
 }
-
 var Reader = {
+
+x : null,
 
 notification : null,
 
@@ -41,11 +42,27 @@ isPost:false,
 
 currentPostLink : "",
 
+currentPostName : "",
+
 mainPageHeight : null,
 
 postHeight : null,
 
 windowHeight : null,
+
+openLink: function _openLink(url) {
+  if (url.startsWith('tel:')) { // dial a phone number
+    new MozActivity({
+      name: 'dial',
+      data: { type: 'webtelephony/number', number: url.substr(4) }
+    });
+  } else if (!url.startsWith('#')) { // browse a URL
+    new MozActivity({
+      name: 'view',
+      data: { type: 'url', url: url }
+    });
+  }
+},
 
 setHeight : function getheightwindow(elemid){
 //document.getElementById('postToolbar').style.position = 'fixed';
@@ -55,8 +72,10 @@ Reader.windowHeight = window.innerHeight;
 //document.getElementById('postToolbar').style.top = (Reader.windowHeight - 40)  + 'px';
 
 if(Reader.mainPageHeight>Reader.postHeight){
-//document.getElementById(elemid).style.height = Reader.mainPageHeight + 40 + "px";
+document.getElementById(elemid).style.height = Reader.mainPageHeight + 40 + "px";
 document.getElementById(elemid).style.height = document.getElementById("read").scrollHeight + 40 + "px";
+document.getElementById('postToolbar').style.bottom = 0;
+
 }
 
 
@@ -88,7 +107,7 @@ Reader.remove('script'+Reader.PostID);
 },
 
 /* ========== Load ========== */
-load : function loadJSON(url){
+load : function __loadJSON(url){
 if(!Reader.isPost)
 Reader.Lid = Reader.CurrentPage;
 else{
@@ -144,6 +163,8 @@ ShowPost : function _ShowPost(obj){
 //Reader.isPost=true;
 Reader.PostClickRate=1;
 Reader.currentPostLink=obj["post"].url;
+Reader.currentPostName=obj["post"].title;
+
 console.log("===== Trying to show a single post...");
 var t='<section id="read" class="post OpenPostAnim" role="region">'
 +'<header>'
@@ -160,13 +181,13 @@ var t='<section id="read" class="post OpenPostAnim" role="region">'
 +'أضف تعليق'
 +'</a></div>'
 +'<div id="space"></div>'
-/*+'<div role="toolbar" id="postToolbar">'
-+'	<ul>'
++'<div role="toolbar" id="postToolbar">'
++'	<ul id="sharePost">'
 +'    <li><button onclick="Reader.goHome()" class="pack-icon-home">Home</button></li>'
 +'	  <li><button onclick="share.init()" class="pack-icon-share">Share</button></li>'
 +'  </ul>'
 +'<ul></ul>'
-+'</div>' */
++'</div>'
 +'</section>';
 
 document.getElementById("Roots").innerHTML+=t;
@@ -175,6 +196,23 @@ window.scrollTo(0, 0);
 }
 Reader.setHeight("read");
 console.log("===== Post successfully Loaded");
+Reader.x = content.document.getElementById('readInside').getElementsByTagName("a");
+for (var i2=0; i2 < Reader.x.length; i2++)
+{
+	var link = Reader.x[i2];
+  //link.addEventListener("click", function() { Reader.openLink(Reader.x[i2].href); }, false);
+        if (!link.dataset.href) {
+        link.dataset.href = link.href;
+        link.href = '#';
+      }
+      if (!link.dataset.href.startsWith('#')) { // external link
+        link.onclick = function() {
+          Reader.openLink(this.dataset.href);
+          return false;
+        };
+      }
+}
+
 },
 
 /* ========== GO Home ========== */
@@ -194,7 +232,7 @@ return;
 else{
 Reader.isPost = true;
 Reader.PostID = pID;
-Reader.load('http://arabicmozilla.org/?json=get_post&callback=Reader.ShowPost&id='+pID);
+Reader.load(info.blogURL+'?json=get_post&callback=Reader.ShowPost&id='+pID);
 Reader.PostClickRate=1;
   
 /*    
@@ -260,10 +298,8 @@ Reader.load(Reader.DefaultJson+Reader.PageAction+Reader.CurrentPage+Reader.Callb
 
 }
 
-
-
 window.addEventListener('load', function readerOnLoad(evt) {
   window.removeEventListener('load', readerOnLoad);
   Reader.init();
-
+  
 });
