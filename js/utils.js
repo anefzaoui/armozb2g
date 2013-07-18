@@ -26,9 +26,10 @@ Posts : {},
 
 isLoading : false,
 
-MainJson : info.blogURL + "?json=get_posts&page=1",
+MainJson : info.blogURL + "?json=get_posts&include=id,title,date,attachments&page=1",
 
-DefaultJson : info.blogURL + "?json=get_posts",
+DefaultJson : info.blogURL + "?json=get_posts&include=id,title,date,attachments",
+
 
 PageAction : "&page=",
 
@@ -49,6 +50,12 @@ mainPageHeight : null,
 postHeight : null,
 
 windowHeight : null,
+
+  notify : function _notify(titleid, bodyid) {
+    var title = titleid;
+    var body = bodyid;
+    navigator.mozNotification.createNotification(title, body, '../style/icons/set2/icon60.png').show();
+  },
 
 openLink: function _openLink(url) {
   if (url.startsWith('tel:')) { // dial a phone number
@@ -100,8 +107,9 @@ Reader.isLoading=true;
 back : function backtomain(){
 Reader.isPost = false;
 Reader.PostClickRate=0;
-document.getElementById('read').classList.remove("OpenPostAnim");
 document.getElementById('read').classList.add("ClosePostAnim");
+document.getElementById('read').classList.remove("OpenPostAnim");
+
 setTimeout(function() { Reader.remove('read'); }, 1000);
 Reader.remove('script'+Reader.PostID);
 },
@@ -191,6 +199,7 @@ var t='<section id="read" class="post OpenPostAnim" role="region">'
 +'</section>';
 
 document.getElementById("Roots").innerHTML+=t;
+
 if ((window.scrollX !== 0) || (window.scrollY !== 0)) {
 window.scrollTo(0, 0);
 }
@@ -212,7 +221,6 @@ for (var i2=0; i2 < Reader.x.length; i2++)
         };
       }
 }
-
 },
 
 /* ========== GO Home ========== */
@@ -232,7 +240,7 @@ return;
 else{
 Reader.isPost = true;
 Reader.PostID = pID;
-Reader.load(info.blogURL+'?json=get_post&callback=Reader.ShowPost&id='+pID);
+Reader.load(info.blogURL+'?json=get_post&include=id,title,url,content,author&callback=Reader.ShowPost&id='+pID);
 Reader.PostClickRate=1;
   
 /*    
