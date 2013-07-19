@@ -22,7 +22,7 @@ share.handleShareButtonClick();
 },
 
 handleShareButtonClick: function toolbar_handleShareButtonClick() {
-	Reader.notify('موضوع جديد', 'topic');
+	/*Reader.notify('موضوع جديد', 'topic');*/
 	if(Reader.isPost) share.shareID="sharePost";
 	else share.shareID="share";
     var SharToolbar = document.getElementById(share.shareID);

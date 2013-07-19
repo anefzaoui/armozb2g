@@ -174,7 +174,7 @@ Reader.currentPostLink=obj["post"].url;
 Reader.currentPostName=obj["post"].title;
 
 console.log("===== Trying to show a single post...");
-var t='<section id="read" class="post OpenPostAnim" role="region">'
+/*var t='<section id="read" class="post OpenPostAnim" role="region">'
 +'<header>'
 +'<button onclick="Reader.back()" id="mainBack"><span class="icon icon-back">back</span></button>'
 +'<h1>'+obj["post"].title+'</h1>'
@@ -197,8 +197,10 @@ var t='<section id="read" class="post OpenPostAnim" role="region">'
 +'<ul></ul>'
 +'</div>'
 +'</section>';
-
-document.getElementById("Roots").innerHTML+=t;
+*/
+document.getElementById("CurrentPostTitle").innerHTML=obj["post"].title;
+document.getElementById("CurrentPostAuthor").innerHTML=obj["post"]["author"].name;
+document.getElementById("readInside").innerHTML=obj["post"].content;
 
 if ((window.scrollX !== 0) || (window.scrollY !== 0)) {
 window.scrollTo(0, 0);
@@ -223,6 +225,37 @@ for (var i2=0; i2 < Reader.x.length; i2++)
 }
 },
 
+showUI : function showPostUI(){
+var t='<section id="read" class="post OpenPostAnim" role="region">'
++'<header>'
++'<button onclick="Reader.back()" id="mainBack"><span class="icon icon-back">back</span></button>'
++'<h1 id="CurrentPostTitle"></h1>'
++'</header>'
++'<header>'
++'<h2 id="CurrentPostAuthor"></h2>'
++'</header>'
++'<div id="readInside">'
++'<center>'
++'برجاء الإنتظار.<br/>يتم جمع المعلومات.</p>'
++'<br/><progress></progress>'
++'</center>'
++'</div>'
++'<div class="addCommentButtonSection">'
++'<a class="recommend" role="button" href="javascript:comments.openInterface();">'
++'أضف تعليق'
++'</a></div>'
++'<div id="space"></div>'
++'<div role="toolbar" id="postToolbar">'
++'	<ul id="sharePost">'
++'    <li><button onclick="Reader.goHome()" class="pack-icon-home">Home</button></li>'
++'	  <li><button onclick="share.init()" class="pack-icon-share">Share</button></li>'
++'  </ul>'
++'<ul></ul>'
++'</div>'
++'</section>';
+document.getElementById("Roots").innerHTML+=t;
+},
+
 /* ========== GO Home ========== */
 
 goHome : function goToHome(){
@@ -240,8 +273,9 @@ return;
 else{
 Reader.isPost = true;
 Reader.PostID = pID;
-Reader.load(info.blogURL+'?json=get_post&include=id,title,url,content,author&callback=Reader.ShowPost&id='+pID);
 Reader.PostClickRate=1;
+Reader.showUI();
+Reader.load(info.blogURL+'?json=get_post&include=id,title,url,content,author&callback=Reader.ShowPost&id='+pID);
   
 /*    
 	Testing notifications
