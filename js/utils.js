@@ -30,6 +30,7 @@ MainJson : info.blogURL + "?json=get_posts&include=id,title,date,attachments&pag
 
 DefaultJson : info.blogURL + "?json=get_posts&include=id,title,date,attachments",
 
+postLoaded : false,
 
 PageAction : "&page=",
 
@@ -105,13 +106,15 @@ Reader.isLoading=true;
 
 /* ========== Back to main ========== */
 back : function backtomain(){
+if(Reader.postLoaded){
 Reader.isPost = false;
 Reader.PostClickRate=0;
 document.getElementById('read').classList.add("ClosePostAnim");
 document.getElementById('read').classList.remove("OpenPostAnim");
-
 setTimeout(function() { Reader.remove('read'); }, 1000);
 Reader.remove('script'+Reader.PostID);
+}
+Reader.postLoaded = false;
 },
 
 /* ========== Load ========== */
@@ -223,6 +226,7 @@ for (var i2=0; i2 < Reader.x.length; i2++)
         };
       }
 }
+Reader.postLoaded = true;
 },
 
 showUI : function showPostUI(){
